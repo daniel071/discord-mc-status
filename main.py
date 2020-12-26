@@ -8,8 +8,10 @@ from datetime import datetime
 
 # TODO:
 # Make bot recover from restart, continuing to edit all existing messages
-# Add readme
-# Add help command
+# - Add readme
+# - Add help command
+# - Add configuration to change settings for each specific server, such as time
+#   to update message
 
 load_dotenv()
 
@@ -51,9 +53,7 @@ async def summon(ctx, arg1, arg2):
 		except discord.NotFound:
 			break
 
-		await asyncio.sleep(5)
-		print("update completed")
-
+		await asyncio.sleep(60)
 
 
 bot.run(os.getenv('TOKEN'))
