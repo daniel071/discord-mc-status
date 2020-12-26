@@ -1,8 +1,10 @@
 import discord
 import os
+import asyncio
 from discord.ext import commands
 from dotenv import load_dotenv
 from mcstatus import MinecraftServer
+from datetime import datetime
 
 load_dotenv()
 
@@ -13,7 +15,30 @@ async def on_ready():
 	print('Im Ready')
 
 @bot.command()
-async def summon(ctx, arg):
-    await ctx.send(arg)
+async def summon(ctx, arg1, arg2):
+	updateMessage = updateMessage = await ctx.send("Fetching server data...")
+
+	while True:
+		server = MinecraftServer.lookup("{ip}:{port}".format(ip=arg1, port=arg2))
+		status = server.status()
+		query = server.query()
+
+
+		now = datetime.now()
+		currentTime = now.strftime("%B %d, %Y %H:%M:%S")
+
+		message = """
+		**Current Server Status**
+		(last updated {time})
+		Server online: :white_check_mark:
+		Latency: **{latency}ms**
+		Players online: **{players_online}**
+		Current players: {players_list}
+		""".format(time=currentTime, latency=status.latency, players_online=status.players.online, players_list=", ".join(query.players.names))
+		await updateMessage.edit(content=message)
+		await asyncio.sleep(5)
+
+
+
 
 bot.run(os.getenv('TOKEN'))
