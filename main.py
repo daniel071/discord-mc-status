@@ -6,6 +6,11 @@ from dotenv import load_dotenv
 from mcstatus import MinecraftServer
 from datetime import datetime
 
+# TODO:
+# Make bot recover from restart, continuing to edit all existing messages
+# Add readme
+# Add help command
+
 load_dotenv()
 
 bot = commands.Bot(command_prefix=';')
@@ -41,10 +46,13 @@ async def summon(ctx, arg1, arg2):
 			Server online: :x:
 			""".format(time=currentTime)
 
+		try:
+			await updateMessage.edit(content=message)
+		except discord.NotFound:
+			break
 
-		await updateMessage.edit(content=message)
 		await asyncio.sleep(5)
-
+		print("update completed")
 
 
 
