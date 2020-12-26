@@ -56,4 +56,22 @@ async def summon(ctx, arg1, arg2):
 		await asyncio.sleep(60)
 
 
+@bot.command()
+async def info(ctx):
+	message = """Version: v1.1.0\nSource code: https://github.com/daniel071/discord-mc-status
+	"""
+	await ctx.send(message)
+
+
+@bot.event
+async def on_message(message):
+    if bot.user.mentioned_in(message):
+        await message.channel.send("You can type `;help` for more info")
+
+
+@bot.command()
+async def info(ctx):
+	await ctx.send("TODO")
+
+
 bot.run(os.getenv('TOKEN'))
