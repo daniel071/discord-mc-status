@@ -7,7 +7,7 @@ from mcstatus import MinecraftServer
 from datetime import datetime
 
 # TODO:
-# Make bot recover from restart, continuing to edit all existing messages
+# - Make bot recover from restart, continuing to edit all existing messages
 # - Add readme
 # - Add help command
 # - Add configuration to change settings for each specific server, such as time
