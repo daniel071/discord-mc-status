@@ -27,7 +27,7 @@ async def summon(ctx, arg1, arg2):
 
 	while True:
 		now = datetime.now()
-		currentTime = now.strftime("%B %d, %Y %H:%M:%S")
+		currentTime = now.strftime("%B %d, %Y %I:%M:%S %p")
 		server = MinecraftServer.lookup("{ip}:{port}".format(ip=arg1, port=arg2))
 		try:
 			status = server.status()
