@@ -65,13 +65,10 @@ async def info(ctx):
 
 @bot.event
 async def on_message(message):
-    if bot.user.mentioned_in(message):
-        await message.channel.send("You can type `;help` for more info")
+	if bot.user.mentioned_in(message):
+		await message.channel.send("You can type `;help` for more info")
 
-
-@bot.command()
-async def info(ctx):
-	await ctx.send("TODO")
+	await bot.process_commands(message)
 
 
 bot.run(os.getenv('TOKEN'))
