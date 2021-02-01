@@ -8,14 +8,12 @@ from datetime import datetime
 
 # TODO:
 # - Make bot recover from restart, continuing to edit all existing messages
-# - Add readme
-# - Add help command
 # - Add configuration to change settings for each specific server, such as time
 #   to update message
 
 load_dotenv()
 
-bot = commands.Bot(command_prefix=';')
+bot = commands.Bot(command_prefix=';', help_command=None)
 
 @bot.event
 async def on_ready():
@@ -56,11 +54,15 @@ async def summon(ctx, arg1, arg2):
 		await asyncio.sleep(60)
 
 
+
 @bot.command()
-async def info(ctx):
-	message = """Version: v1.1.0\nSource code: https://github.com/daniel071/discord-mc-status
-	"""
-	await ctx.send(message)
+async def help(ctx):
+	embed=discord.Embed(title="All commands", description='Use the prefix ";" to use them!')
+	embed.set_author(name="Version: v1.1.0", url="https://github.com/daniel071/discord-mc-status")
+	embed.add_field(name=";summon", value="Makes the bot fetch the server's status and send a contiously updating message", inline=False)
+	embed.add_field(name=";config", value="Opens the config menu, where settings can be set", inline=False)
+	embed.add_field(name=";help", value="Displays this message", inline=False)
+	await ctx.send(embed=embed)
 
 
 @bot.event
