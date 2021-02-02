@@ -17,7 +17,9 @@ bot = commands.Bot(command_prefix=';', help_command=None)
 
 @bot.event
 async def on_ready():
-	print('Im Ready')
+	servers = list(bot.guilds)
+	print(f"Connected on {str(len(servers))} servers:")
+	print('\n'.join(server.name for server in servers))
 
 @bot.command()
 async def summon(ctx, arg1, arg2):
