@@ -22,11 +22,13 @@ async def is_owner(ctx):
 	else:
 		return False
 
+
 @bot.event
 async def on_ready():
 	servers = list(bot.guilds)
 	print(f"Connected on {str(len(servers))} servers:")
 	print('\n'.join(server.name for server in servers))
+
 
 @bot.command()
 async def summon(ctx, arg1, arg2):
@@ -87,10 +89,6 @@ async def help(ctx):
 	embed.add_field(name=";help", value="Displays this message", inline=False)
 	await ctx.send(embed=embed)
 
-
-@bot.command()
-async def help(ctx):
-	await ctx.send("TODO: Custom help command")
 
 @bot.event
 async def on_message(message):
