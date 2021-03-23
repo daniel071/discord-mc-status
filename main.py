@@ -15,7 +15,7 @@ from datetime import datetime
 
 load_dotenv()
 
-bot = commands.Bot(command_prefix=';')
+bot = commands.Bot(command_prefix=';', help_command=None)
 
 @bot.event
 async def on_ready():
@@ -63,15 +63,13 @@ async def info(ctx):
 	await ctx.send(message)
 
 
+@bot.command()
+async def help(ctx):
+	await ctx.send("TODO: Custom help command")
+
 @bot.event
 async def on_message(message):
     if bot.user.mentioned_in(message):
         await message.channel.send("You can type `;help` for more info")
-
-
-@bot.command()
-async def info(ctx):
-	await ctx.send("TODO")
-
 
 bot.run(os.getenv('TOKEN'))
