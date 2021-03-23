@@ -81,7 +81,7 @@ async def edit(ctx, msg_id: int = None, channel: discord.TextChannel = None):
 @bot.command()
 async def help(ctx):
 	embed=discord.Embed(title="All commands", description='Use the prefix ";" to use them!')
-	embed.set_author(name="Version: v1.1.0", url="https://github.com/daniel071/discord-mc-status")
+	embed.set_author(name="Version: v1.1.1", url="https://github.com/daniel071/discord-mc-status")
 	embed.add_field(name=";summon", value="Makes the bot fetch the server's status and send a contiously updating message", inline=False)
 	embed.add_field(name=";config", value="Opens the config menu, where settings can be set", inline=False)
 	embed.add_field(name=";help", value="Displays this message", inline=False)
